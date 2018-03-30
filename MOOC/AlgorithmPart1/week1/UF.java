@@ -35,13 +35,15 @@ public class UF {
 
 		if (pID == qID)
 			return;
-
+// 		id[pID] = qID;
 		for (int i = 0; i < id.length; i++)
 		{
 			if (id[i] == pID)
 				id[i] == qID;
 
 		}
+		
+
 		count--;
 
 	}

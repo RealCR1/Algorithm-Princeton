@@ -13,16 +13,23 @@ public class SLList {
 	private IntNode last;
 	private int size;
 
+	public SLList() {
+		sentinal = new IntNode(63, null);
+		size = 0;
+	}
 	public SLList(int x) {
-		first = new IntNode(x, null);
+		sentinal = new IntNode(63, null);
+		sentinal.next = new IntNode(x, null);
+		size = 0;
 	}
 
 	public void addFirst(int x) {
-		first = new IntNode(x, first);
+		sentinal.next = new IntNode(x, sentinal.next);
+		size += 1;
 	}
 
 	public int getFirst() {
-		return first.item;
+		return sentinal.next.item;
 	}
 
 	public void addLast(int x) {

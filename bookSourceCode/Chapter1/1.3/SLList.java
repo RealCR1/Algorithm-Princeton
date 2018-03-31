@@ -9,7 +9,9 @@ public class SLList {
 		}
 	}
 
-	public IntNode first;
+	private IntNode sentinal;
+	private IntNode last;
+	private int size;
 
 	public SLList(int x) {
 		first = new IntNode(x, null);
@@ -24,12 +26,10 @@ public class SLList {
 	}
 
 	public void addLast(int x) {
-		if (first == null) {
-			first = new IntNode(x, null);
-			return;
-		}
-		
-		IntNode p = first;
+		//To reduce the complexity. 
+		//Introduce the sentinal Node to make sure all list will not be empty.
+
+		IntNode p = sentinal;
 		while (p.next != null) {
 			p = p.next;
 		}

@@ -1,26 +1,21 @@
-public class SLList {
+public class SLList<Lochness> {
+
 	public class IntNode {
-		public int item;
+		public Lochness item;
 		public IntNode next;
 
-		public IntNode(int i, IntNode n) {
+		public IntNode(Lochness i, IntNode n) {
 			item = i;
 			next = n;
 		}
 	}
 
-	private IntNode sentinal;
-	private IntNode last;
-	private int size;
+	private Lochness first;
+	private int size; //The type of size is always int.
 
-	public SLList() {
-		sentinal = new IntNode(63, null);
-		size = 0;
-	}
-	public SLList(int x) {
-		sentinal = new IntNode(63, null);
-		sentinal.next = new IntNode(x, null);
-		size = 0;
+	public SLList(Lochness x) {
+		first = new IntNode(x, null);
+		size = 1;
 	}
 
 	public void addFirst(int x) {

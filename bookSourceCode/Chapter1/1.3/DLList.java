@@ -1,10 +1,10 @@
-public class DLList {
-	public class IntNode {
+public class DLList<Item> {
+	public class Node {
 		public int item;
-		public IntNode pre;
-		public IntNode next;
+		public Node pre;
+		public Node next;
 
-		public IntNode(int i, IntNode p, IntNode n) {
+		public Node(int i, Node p, Node n) {
 			this.item = i;
 			this.pre = p;
 			this.next = n;
@@ -12,26 +12,26 @@ public class DLList {
 	}	
 
 	public int size;
-	public IntNode sentinal;
-	public IntNode last;
+	public Node sentinal;
+	public Node last;
 
 	//Create an empty double linked list.
 	public DLList() {
-		sentinal = new IntNode(null, null, null);
+		sentinal = new Node(null, null, null);
 		this.sentinal.pre = sentinal;
 		this.sentinal.next = sentinal;
 	}
 
 	//Add an item to the beginning of the DLList.
 	public void addFirst(Item i) {
-		this.sentinal.next = new IntNode(i, this.sentinal, this.sentinal.next);
-		this.sentinal.next.pre = new IntNode(i, this.sentinal, this.sentinal.next);
+		this.sentinal.next = new Node(i, this.sentinal, this.sentinal.next);
+		this.sentinal.next.pre = new Node(i, this.sentinal, this.sentinal.next);
 		size += 1;
 	}
 
 	public void addLast(Item i) {
 		size += 1;
-		IntNode Node = new IntNode(i, this.sentinal, this.sentinal.pre);
+		IntNode Node = new Node(i, this.sentinal, this.sentinal.pre);
 		this.sentinal.pre = Node;
 		this.sentinal.pre.next = Node;
 	}
@@ -45,7 +45,48 @@ public class DLList {
 	}
 
 	public Item removeFirst() {
-		
+		if (this.sentinal.next == null) {
+			return null; //If the sentinal's next pointer is null, the DLList is empty.	
+		}
+
+		Item item = this.sentinal.next.item;
+		sentinal.next = sentinal.next.next;
+
+		size -= 1;
+		return item;
+	}
+
+	public Item removeLast() {
+		Item item = last.item;
+		last = last.pre;
+		last.next = sentinal;
+
+		size -= 1;
+		return item;
+	}
+
+	public void printDeque() {
+		Node p = this.sentinal.next;
+		while (p != sentinal.pre) {
+			System.out.println(p.item + " ");
+			p = p.next;
+		}
+	}
+
+	public Item get(int index) {
+		if (this.size() == 0) {
+			return null;
+		} else {
+			Node p = this.sentinal.next;
+			while (index != 0) {
+				if (p.next == this.sentinal) {
+					return null;
+				}
+				p = p.next;
+				index -= 1;
+			}
+			return p.item;
+		}
 	}
 }
 

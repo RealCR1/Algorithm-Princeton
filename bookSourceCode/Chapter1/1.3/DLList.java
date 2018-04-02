@@ -73,6 +73,7 @@ public class DLList<Item> {
 		}
 	}
 
+
 	public Item get(int index) {
 		if (this.size() == 0) {
 			return null;
@@ -88,6 +89,26 @@ public class DLList<Item> {
 			return p.item;
 		}
 	}
+
+
+	//Using the recursion
+	public Item getRecursive(int index) {
+		if (index == 0) {
+			return this.sentinal.next.item;
+		}
+		Node p = this.sentinal.next;
+		return getRecursiveHelper(p, index);
+	}
+
+	public Item getRecursiveHelper(Node p, int index) {
+		if (index == 0) {
+			return p.item;
+		} else {
+			p = p.next;
+			return getRecursiveHelper(p, index-1);
+		}
+	}
+	
 }
 
 
